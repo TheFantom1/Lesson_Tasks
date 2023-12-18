@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+ - створити блок,
+ - додати йому класи wrap, collapse, alpha, beta
+ - додати стилі(довільні значення) : колір фону, колір тексту, розмір тексту
+ - додати цей блок в body.
+ - клонувати його повністю, та додати клон в body.
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap {
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .collapse {
+            display: inline-block;
+        }
+
+        .alpha {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .beta {
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="originalBlock" class="wrap collapse alpha beta">
+    Original Block
+</div>
+
+<script>
+    let originalBlock = document.getElementById('originalBlock');
+    let clonedBlock = originalBlock.cloneNode(true);
+    document.body.appendChild(clonedBlock);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- - Є масив:
+['Main','Products','About us','Contacts']
+Зробити ul в середині якої будуть лежати елементи масиву (кожен в своєму li)-->
+<head>
+    <meta charset="UTF-8">
+    <title>Menu List</title>
+</head>
+<body>
+
+<ul id="menuList"></ul>
+
+<script>
+    let menuItems = ['Main', 'Products', 'About us', 'Contacts'];
+    let menuList = document.getElementById('menuList');
+
+    for (let i = 0; i < menuItems.length; i++) {
+        let listItem = document.createElement('li');
+        listItem.textContent = menuItems[i];
+        menuList.appendChild(listItem);
+    }
+</script>
+
+</body>
+</html>
