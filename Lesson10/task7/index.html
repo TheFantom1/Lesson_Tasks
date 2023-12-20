@@ -1,0 +1,47 @@
+<!--*** Створити 3 інпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
+При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
+(Додатковачастина для завдання)-->
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<label for="rowsInput"></label><input type="number" id="rowsInput" placeholder="Кількість рядків">
+<label for="colsInput"></label><input type="number" id="colsInput" placeholder="Кількість ячеек">
+<label for="contentInput"></label><input type="text" id="contentInput" placeholder="Вміст ячеєк">
+<button onclick="createTable()">Створити таблицю</button>
+
+<div id="tableContainer"></div>
+
+<script>
+    function createTable() {
+        let rows = document.getElementById('rowsInput').value;
+        let cols = document.getElementById('colsInput').value;
+        let content = document.getElementById('contentInput').value;
+
+        let table = '<table>';
+        for (let i = 0; i < rows; i++) {
+            table += '<tr>';
+            for (let j = 0; j < cols; j++) {
+                table += '<td>' + content + '</td>';
+            }
+            table += '</tr>';
+        }
+        table += '</table>';
+
+        document.getElementById('tableContainer').innerHTML = table;
+    }
+</script>
+</body>
+</html>

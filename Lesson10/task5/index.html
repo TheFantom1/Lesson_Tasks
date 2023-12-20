@@ -1,0 +1,19 @@
+<!-- - Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".-->
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Dis a ppear</title>
+</head>
+<body>
+<div id="text">Це довільний елемент</div>
+<button onclick="hideElement()">Приховати елемент</button>
+
+<script>
+    function hideElement() {
+        let element = document.getElementById('text');
+        element.style.display = 'none';
+    }
+</script>
+</body>
+</html>

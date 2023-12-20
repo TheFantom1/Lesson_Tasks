@@ -1,0 +1,36 @@
+<!--є сторінка, на якій є блок, я кому знаходиьтся цифра. написати код, який при кожному перезавантажені сторінки буде додавати до неї +1-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>1.2.3.4.5.6.7.8.9.infinity</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="counter"></div>
+<button class="deleteCounter">Delete Counter</button>
+
+<script>
+    let counter = localStorage.getItem('counter');
+    if (!counter) {
+        counter = 0;
+    } else {
+        counter = parseInt(counter);
+    }
+
+    counter++;
+    localStorage.setItem('counter', counter);
+
+    document.getElementById('counter').innerText = counter;
+
+    function deleteCounter() {
+        localStorage.removeItem('counter');
+        counter = 0;
+        document.getElementById('counter').innerText = counter;
+    }
+
+    document.querySelector('.deleteCounter').addEventListener('click', deleteCounter);
+
+</script>
+</body>
+</html>
+

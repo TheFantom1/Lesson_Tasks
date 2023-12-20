@@ -1,0 +1,57 @@
+<!--зробити масив на 100 об'єктів та дві кнопки prev next
+при завантажені сторінки з'являються перші 10 об'єктів.
+При натисканні next виводяться настпні 10 об'єктів
+При натисканні prev виводяться попередні 10 об'єктів-->
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Scrolling</title>
+</head>
+<body>
+<div id="objects"></div>
+<button onclick="prevPage()">Попередня</button>
+<button onclick="nextPage()">Наступна</button>
+
+<script>
+    let objects = [];
+
+    for (let i = 0; i < 100; i++) {
+        objects.push({ id: i, data: `Об'єкт ${i + 1}` });
+    }
+
+    let currentPage = 0;
+
+    function displayObjects() {
+        let startIndex = currentPage * 10;
+        let endIndex = startIndex + 10;
+        let display = objects.slice(startIndex, endIndex);
+
+        let objectsDiv = document.getElementById('objects');
+        objectsDiv.innerHTML = '';
+
+        display.forEach(function (obj) {
+            let p = document.createElement('p');
+            p.textContent = `${obj.id}: ${obj.data}`;
+            objectsDiv.appendChild(p);
+        });
+    }
+
+    function nextPage() {
+        if (currentPage < 9) {
+            currentPage++;
+            displayObjects();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            displayObjects();
+        }
+    }
+
+    displayObjects();
+</script>
+</body>
+</html>

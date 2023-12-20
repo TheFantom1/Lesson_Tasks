@@ -1,0 +1,39 @@
+<!--Стоврити форму з трьома полями для name,sruname,age та кнопкою. При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ. Іншими словами : заповниои форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form</title>
+</head>
+<meta charset="UTF-8">
+<body>
+
+<form id="myForm">
+    <label for="name">Ім'я:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="surname">Прізвище:</label>
+    <input type="text" id="surname" name="surname"><br><br>
+    <label for="age">Вік:</label>
+    <input type="text" id="age" name="age"><br><br>
+    <button type="button" onclick="submitForm()">Відправити</button>
+</form>
+
+<div id="output"></div>
+
+<script>
+    function submitForm() {
+        let name = document.getElementById('name').value;
+        let surname = document.getElementById('surname').value;
+        let age = document.getElementById('age').value;
+
+        let person = {
+            name: name,
+            surname: surname,
+            age: age
+        };
+
+        document.getElementById('output').innerText = JSON.stringify(person);
+    }
+</script>
+
+</body>
+</html>

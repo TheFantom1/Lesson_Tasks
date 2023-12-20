@@ -1,0 +1,56 @@
+<!--*** (подібне було вище, але...будьте уважні в другій частині) створити сторінку з довільним блоком, в середині якого є значення "100грн"
+при перезавантаженні сторінки до значаення додається по 10грн, але !!!
+ зміна ціни відбувається тільки на перезавантаження, які відбулись пізніше ніж 10 секунд після попереднього.
+ При перезавантаженні, яке відбулось раніше ніж минуло 10 секунд - нічого не відбувається-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Amount</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div id="amountBlock">100грн</div>
+<button id="updateAmount">Вернути сотку</button>
+
+<script>
+    const amountKey = 'amountValue';
+    const timeKey = 'lastUpdateTime';
+    const incrementAmount = 10;
+
+    let lastUpdateTime = localStorage.getItem(timeKey);
+    let amount = localStorage.getItem(amountKey);
+
+    if (!lastUpdateTime || !amount) {
+        amount = 100;
+        lastUpdateTime = Date.now();
+        localStorage.setItem(amountKey, amount);
+        localStorage.setItem(timeKey, lastUpdateTime);
+    } else {
+        lastUpdateTime = parseInt(lastUpdateTime);
+        amount = parseInt(amount);
+        const currentTime = Date.now();
+        const timeDifference = currentTime - lastUpdateTime;
+
+        if (timeDifference >= 10000) {
+            amount += incrementAmount;
+            lastUpdateTime = currentTime;
+            localStorage.setItem(amountKey, amount);
+            localStorage.setItem(timeKey, lastUpdateTime);
+        }
+    }
+
+    document.getElementById('amountBlock').innerText = amount + 'грн';
+
+    function updateAmount() {
+        amount = 100;
+        lastUpdateTime = Date.now();
+        localStorage.setItem(amountKey, amount);
+        localStorage.setItem(timeKey, lastUpdateTime);
+        document.getElementById('amountBlock').innerText = amount + 'грн';
+    }
+
+    document.getElementById('updateAmount').addEventListener('click', updateAmount);
+</script>
+</body>
+</html>
+
