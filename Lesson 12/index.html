@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+</head>
+<body>
+<h1>Users List</h1>
+<ul id="usersList"></ul>
+
+<script>
+    function createUsersList(users) {
+        const usersList = document.getElementById('usersList');
+        users.forEach(user => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `user-details.html?id=${user.id}`;
+            link.textContent = `${user.id} - ${user.name}`;
+            listItem.appendChild(link);
+            usersList.appendChild(listItem);
+        });
+    }
+
+    function getUsers() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(users => createUsersList(users))
+            .catch(error => console.error('Error:', error));
+    }
+
+    getUsers();
+    
+</script>
+</body>
+</html>
